@@ -65,13 +65,15 @@ try:
         targetNode = uploadToAlfresco.uploadToAlfresco(row[4],globalBaseURL,baseFolder)
         updateNode.updateNode(targetNode,row[1],row[2],row[3],globalBaseURL) #only update the target node
         
-        node2 = uploadToAlfresco.uploadToAlfresco(row[5],globalBaseURL,baseFolder) #change folder to hidden
-        #print (makeTargetAssociation.makeTargetAssociation(node2,targetNode,globalBaseURL))
-        print (mca.makeChildAssociation(node2,targetNode,globalBaseURL))
+        if row[5] != '':
+            node2 = uploadToAlfresco.uploadToAlfresco(row[5],globalBaseURL,baseFolder) #change folder to hidden
+            #print (makeTargetAssociation.makeTargetAssociation(node2,targetNode,globalBaseURL))
+            print (mca.makeChildAssociation(node2,targetNode,globalBaseURL))
 
-        node3 = uploadToAlfresco.uploadToAlfresco(row[6],globalBaseURL,baseFolder) #change folder to hidden
-        #print (makeTargetAssociation.makeTargetAssociation(node3,targetNode,globalBaseURL))
-        print (mca.makeChildAssociation(node3,targetNode,globalBaseURL))
+        if row[6] != '':
+            node3 = uploadToAlfresco.uploadToAlfresco(row[6],globalBaseURL,baseFolder) #change folder to hidden
+            #print (makeTargetAssociation.makeTargetAssociation(node3,targetNode,globalBaseURL))
+            print (mca.makeChildAssociation(node3,targetNode,globalBaseURL))
 
 
 except mysql.connector.Error as e:
