@@ -1,7 +1,7 @@
 import requests
 import json
 
-def uploadToAlfresco(fileName,alfURL,folderNodeID):
+def uploadToAlfresco(fileName,alfURL,folderNodeID,child):
     nodeID = ''
     responseData = ''
     tempFileData = ''
@@ -13,8 +13,14 @@ def uploadToAlfresco(fileName,alfURL,folderNodeID):
     #first step is to create the node
 
     _url = alfURL + "/alfresco/api/-default-/public/alfresco/versions/1/nodes/"+folderNodeID+"/children"
-    dat = '{ "name": "'+ fileName +'","nodeType":"my:whitepaper"}'
-    dat = '{ "name": "'+ fileName +'","nodeType":"my:cases"}'
+
+    if (child == ''):
+        dat = '{ "name": "'+ fileName +'","nodeType":"my:whitepaper"}'
+        dat = '{ "name": "'+ fileName +'","nodeType":"my:cases"}'
+    else:
+        dat = '{ "name": "'+ fileName +'","nodeType":"rel:relatedCases"}'
+
+        
     print("data for node create is:" + dat)
     jsonData = requests.post(_url, data = dat, auth = ('demo','demo'))
 

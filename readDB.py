@@ -62,16 +62,16 @@ try:
         print("assoc1 =", row[5])
         print("assoc2 =", row[6])
 
-        targetNode = uploadToAlfresco.uploadToAlfresco(row[4],globalBaseURL,baseFolder)
+        targetNode = uploadToAlfresco.uploadToAlfresco(row[4],globalBaseURL,baseFolder,'')
         updateNode.updateNode(targetNode,row[1],row[2],row[3],globalBaseURL) #only update the target node
         
         if row[5] != '':
-            node2 = uploadToAlfresco.uploadToAlfresco(row[5],globalBaseURL,baseFolder) #change folder to hidden
+            node2 = uploadToAlfresco.uploadToAlfresco(row[5],globalBaseURL,baseFolder,'child') #change folder to hidden
             #print (makeTargetAssociation.makeTargetAssociation(node2,targetNode,globalBaseURL))
             print (mca.makeChildAssociation(node2,targetNode,globalBaseURL))
 
         if row[6] != '':
-            node3 = uploadToAlfresco.uploadToAlfresco(row[6],globalBaseURL,baseFolder) #change folder to hidden
+            node3 = uploadToAlfresco.uploadToAlfresco(row[6],globalBaseURL,baseFolder,'child') #change folder to hidden
             #print (makeTargetAssociation.makeTargetAssociation(node3,targetNode,globalBaseURL))
             print (mca.makeChildAssociation(node3,targetNode,globalBaseURL))
 
