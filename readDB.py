@@ -10,9 +10,9 @@ baseFolder = '29b8b116-75a1-4ee8-8909-25e1c0dfab87' #for 7.4 EC2 - Associations 
 hiddenFolder = '37d3c179-cf42-4f67-99ea-22bcabf763d7'
 
 #globals for 7.3 install
-globalBaseURL = 'http://ec2-3-90-226-222.compute-1.amazonaws.com' #for 7.3 EC2
+""" globalBaseURL = 'http://ec2-3-90-226-222.compute-1.amazonaws.com' #for 7.3 EC2
 baseFolder = '22515311-84c6-48ba-971f-8ea08cd56628' #for 7.4 EC2 - Associations folder
-hiddenFolder = '37d3c179-cf42-4f67-99ea-22bcabf763d7'
+hiddenFolder = '37d3c179-cf42-4f67-99ea-22bcabf763d7' """
 
 fileName = 'doctornote.jpg'  #for testing
 targetNode = ''
