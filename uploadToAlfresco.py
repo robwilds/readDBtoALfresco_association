@@ -15,7 +15,7 @@ def uploadToAlfresco(fileName,alfURL,folderNodeID,child):
     _url = alfURL + "/alfresco/api/-default-/public/alfresco/versions/1/nodes/"+folderNodeID+"/children"
 
     if (child == ''):
-        dat = '{ "name": "'+ fileName +'","nodeType":"my:whitepaper"}'
+        #dat = '{ "name": "'+ fileName +'","nodeType":"my:whitepaper"}'
         dat = '{ "name": "'+ fileName +'","nodeType":"my:cases"}'
     else:
         dat = '{ "name": "'+ fileName +'","nodeType":"rel:relatedCases"}'
