@@ -2,14 +2,16 @@
 
 ## Pre-requisites
 
-make sure python3 mysql connector are installed. 
+make sure python3 mysql connector are installed if connecting to mysql.
+
+if reading from excel file, be sure pandas and openpyxl are installed
 
 the files that will be fectched will be stored locally to the python script
 
 when the first file column is read, that is sent to alfresco...the resulting nodeid is used as the target for the remaining two files that are associated to the first file
 
 FLOW
-
+(actual columns may vary)
 read column a
 Get file and upload to Alfresco
 store nodeIDa
