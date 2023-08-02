@@ -29,21 +29,22 @@ dataframe1.fillna(0, inplace=True)
 for index, row in dataframe1.iterrows():
     
     if (row['DocID'] == ''): continue; #skip rows that don't have data
-    print(row['DocID'],row['DocFileName'],row['UntzdPDF'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],row['Recipient'],row['RecipientTitle'],row['RecipientAgency'],row['FOIANotes'],row['POFilename'])
+    print(str(row['DocID']),row['DocFileName'],row['UntzdPDF'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],row['Recipient'],row['RecipientTitle'],row['RecipientAgency'],row['FOIANotes'],row['POFilename'])
    
     #now process the main file and any associations
     targetNode = uploadToAlfresco.uploadToAlfresco(row['DocFileName'],globalBaseURL,baseFolder,'')
 
-    updateNode.updateNode(targetNode,globalBaseURL,'','','',row['DocID'],row['DocFileName'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],row['Recipient'],row['RecipientTitle'],row['RecipientAgency'],row['FOIANotes']) #only update the target node
+    updateNode.updateNode(targetNode,globalBaseURL,'','','',str(row['DocID']),row['DocFileName'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],row['Recipient'],row['RecipientTitle'],row['RecipientAgency'],str(row['FOIANotes'])) #only update the target node
 
     if row['UntzdPDF'] != 0:
             node2 = uploadToAlfresco.uploadToAlfresco(row['UntzdPDF'],globalBaseURL,baseFolder,'child') #change folder to hidden
             #print (makeTargetAssociation.makeTargetAssociation(node2,targetNode,globalBaseURL))
             print (mca.makeChildAssociation(node2,targetNode,globalBaseURL))
-"""
-    if row['POFilename'] != 'nan':
+
+    if row['POFilename'] != 0:
             node3 = uploadToAlfresco.uploadToAlfresco(row['POFilename'],globalBaseURL,baseFolder,'child') #change folder to hidden
             #print (makeTargetAssociation.makeTargetAssociation(node3,targetNode,globalBaseURL))
             print (mca.makeChildAssociation(node3,targetNode,globalBaseURL))
- """
+
+
 
