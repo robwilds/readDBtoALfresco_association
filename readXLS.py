@@ -7,14 +7,14 @@ import updateNode
 from numpy import nan
 
 #globals for 7.4 install
-globalBaseURL = 'http://ec2-18-207-114-159.compute-1.amazonaws.com' #for 7.4 EC2
+""" globalBaseURL = 'http://ec2-18-207-114-159.compute-1.amazonaws.com' #for 7.4 EC2
 baseFolder = '29b8b116-75a1-4ee8-8909-25e1c0dfab87' #for 7.4 EC2 - Associations folder
-hiddenFolder = '37d3c179-cf42-4f67-99ea-22bcabf763d7'
+hiddenFolder = '37d3c179-cf42-4f67-99ea-22bcabf763d7' """
 
 #globals for 7.3 install
-""" globalBaseURL = 'http://ec2-3-90-226-222.compute-1.amazonaws.com' #for 7.3 EC2
+globalBaseURL = 'http://ec2-3-90-226-222.compute-1.amazonaws.com' #for 7.3 EC2
 baseFolder = '2fdca4f6-f926-4819-b42e-b8fc993314e6' #for 7.4 EC2 - Associations folder
-hiddenFolder = 'e9ca1a5b-844a-4836-a55e-86eba511293c' """
+hiddenFolder = 'e9ca1a5b-844a-4836-a55e-86eba511293c'
 
 fileName = '' #'doctornote.jpg'  #for testing
 targetNode = ''
