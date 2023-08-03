@@ -21,28 +21,33 @@ targetNode = ''
 node2 = ''
 node3 = ''
  
+path = "FilesforSearchTool/"
+#path = "" #for testing
+
+inputFile = path + "metadata.xlsx"
 # read by default 1st sheet of an excel file
-dataframe1 = pd.read_excel('metadata.xlsx')
+dataframe1 = pd.read_excel(inputFile)
 dataframe1.fillna(0, inplace=True)
 
 
 for index, row in dataframe1.iterrows():
     
     if (row['DocID'] == ''): continue; #skip rows that don't have data
+    print("**************************")
     print(str(row['DocID']),row['DocFileName'],row['UntzdPDF'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],row['Recipient'],row['RecipientTitle'],row['RecipientAgency'],row['FOIANotes'],row['POFilename'])
    
     #now process the main file and any associations
-    targetNode = uploadToAlfresco.uploadToAlfresco(row['DocFileName'],globalBaseURL,baseFolder,'')
+    targetNode = uploadToAlfresco.uploadToAlfresco(path,row['DocFileName'],globalBaseURL,baseFolder,'')
 
-    updateNode.updateNode(targetNode,globalBaseURL,'','','',str(row['DocID']),row['DocFileName'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],row['Recipient'],row['RecipientTitle'],row['RecipientAgency'],str(row['FOIANotes'])) #only update the target node
+    updateNode.updateNode(targetNode,globalBaseURL,'','','',str(row['DocID']),row['DocFileName'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],str(row['Recipient']).replace("0",""),str(row['RecipientTitle']).replace("0",""),str(row['RecipientAgency']).replace("0",""),str(row['FOIANotes']).replace("0","")) #only update the target node
 
     if row['UntzdPDF'] != 0:
-            node2 = uploadToAlfresco.uploadToAlfresco(row['UntzdPDF'],globalBaseURL,baseFolder,'child') #change folder to hidden
+            node2 = uploadToAlfresco.uploadToAlfresco(path,row['UntzdPDF'],globalBaseURL,baseFolder,'child') #change folder to hidden
             #print (makeTargetAssociation.makeTargetAssociation(node2,targetNode,globalBaseURL))
             print (mca.makeChildAssociation(node2,targetNode,globalBaseURL))
 
     if row['POFilename'] != 0:
-            node3 = uploadToAlfresco.uploadToAlfresco(row['POFilename'],globalBaseURL,baseFolder,'child') #change folder to hidden
+            node3 = uploadToAlfresco.uploadToAlfresco(path,row['POFilename'],globalBaseURL,baseFolder,'child') #change folder to hidden
             #print (makeTargetAssociation.makeTargetAssociation(node3,targetNode,globalBaseURL))
             print (mca.makeChildAssociation(node3,targetNode,globalBaseURL))
 

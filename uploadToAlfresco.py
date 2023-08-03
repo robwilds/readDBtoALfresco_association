@@ -1,7 +1,7 @@
 import requests
 import json
 
-def uploadToAlfresco(fileName,alfURL,folderNodeID,child):
+def uploadToAlfresco(path,fileName,alfURL,folderNodeID,child):
     nodeID = ''
     responseData = ''
     tempFileData = ''
@@ -26,14 +26,14 @@ def uploadToAlfresco(fileName,alfURL,folderNodeID,child):
 
     #now need to get nodeID from response
     responseData = jsonData.json()
+    print ("response is: " + str(responseData))
+
     nodeID = responseData["entry"]["id"]
-    
-    #print (nodeID)
 
     #now upload the node content
     #read the file into a buffer
 
-    r = requests.put(alfURL+"/alfresco/api/-default-/public/alfresco/versions/1/nodes/"+nodeID+"/content",  auth=('demo','demo'), data=open(fileName, 'rb'))
+    r = requests.put(alfURL+"/alfresco/api/-default-/public/alfresco/versions/1/nodes/"+nodeID+"/content",  auth=('demo','demo'), data=open(path + fileName, 'rb'))
     #print("result: "+r.text)
 
 
