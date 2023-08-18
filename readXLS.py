@@ -12,9 +12,14 @@ baseFolder = '29b8b116-75a1-4ee8-8909-25e1c0dfab87' #for 7.4 EC2 - Associations 
 hiddenFolder = '37d3c179-cf42-4f67-99ea-22bcabf763d7' """
 
 #globals for 7.3 install
-globalBaseURL = 'http://ec2-3-90-226-222.compute-1.amazonaws.com' #for 7.3 EC2
-baseFolder = '2fdca4f6-f926-4819-b42e-b8fc993314e6' #for 7.4 EC2 - Associations folder
-hiddenFolder = 'e9ca1a5b-844a-4836-a55e-86eba511293c'
+# globalBaseURL = 'http://ec2-3-90-226-222.compute-1.amazonaws.com' #for 7.3 EC2
+# baseFolder = '2fdca4f6-f926-4819-b42e-b8fc993314e6' #for 7.4 EC2 - Associations folder
+# hiddenFolder = 'e9ca1a5b-844a-4836-a55e-86eba511293c'
+
+#globals for 7.4 DOJOLC install
+globalBaseURL = 'http://ec2-3-83-206-117.compute-1.amazonaws.com'
+baseFolder = 'c1bc5948-473c-453f-b81a-d2632ba46d58' #for 7.4 EC2 - Associations folder
+hiddenFolder = '845a2bc5-0bdd-4b3a-8ec9-a494d83512b4'
 
 fileName = '' #'doctornote.jpg'  #for testing
 targetNode = ''
@@ -22,7 +27,8 @@ node2 = ''
 node3 = ''
  
 path = "FilesforSearchTool/"
-#path = "" #for testing
+path = "" #use this for testing
+
 
 inputFile = path + "metadata.xlsx"
 # read by default 1st sheet of an excel file
