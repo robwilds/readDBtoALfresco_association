@@ -3,6 +3,7 @@
 import pandas as pd
 import uploadToAlfresco
 import makeChildAssociation as mca
+import makeTargetAssociation as mta
 import updateNode
 from numpy import nan
 
@@ -22,7 +23,7 @@ baseFolder = 'c1bc5948-473c-453f-b81a-d2632ba46d58' #for 7.4 EC2 - Associations 
 hiddenFolder = '845a2bc5-0bdd-4b3a-8ec9-a494d83512b4'
 
 fileName = '' #'doctornote.jpg'  #for testing
-targetNode = ''
+mainFile = ''
 node2 = ''
 node3 = ''
  
@@ -43,19 +44,25 @@ for index, row in dataframe1.iterrows():
     print(str(row['DocID']),row['DocFileName'],row['UntzdPDF'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],row['Recipient'],row['RecipientTitle'],row['RecipientAgency'],row['FOIANotes'],row['POFilename'])
    
     #now process the main file and any associations
-    targetNode = uploadToAlfresco.uploadToAlfresco(path,row['DocFileName'],globalBaseURL,baseFolder,'')
+    mainFile = uploadToAlfresco.uploadToAlfresco(path,row['DocFileName'],globalBaseURL,baseFolder,'my:cases')
 
-    updateNode.updateNode(targetNode,globalBaseURL,'','','',str(row['DocID']),row['DocFileName'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],str(row['Recipient']).replace("0",""),str(row['RecipientTitle']).replace("0",""),str(row['RecipientAgency']).replace("0",""),str(row['FOIANotes']).replace("0","")) #only update the target node
+    updateNode.updateNode(mainFile,globalBaseURL,'','','',str(row['DocID']),row['DocFileName'],row['DocType'],row['DocFormat'],row['DocTitle'],row['Author'],str(row['Recipient']).replace("0",""),str(row['RecipientTitle']).replace("0",""),str(row['RecipientAgency']).replace("0",""),str(row['FOIANotes']).replace("0","")) #only update the target node
 
     if row['UntzdPDF'] != 0:
-            node2 = uploadToAlfresco.uploadToAlfresco(path,row['UntzdPDF'],globalBaseURL,baseFolder,'child') #change folder to hidden
-            #print (makeTargetAssociation.makeTargetAssociation(node2,targetNode,globalBaseURL))
-            print (mca.makeChildAssociation(node2,targetNode,globalBaseURL))
+        child1 = uploadToAlfresco.uploadToAlfresco(path,row['UntzdPDF'],globalBaseURL,baseFolder,'rel:relatedCases') #change folder to hidden
+        #this associates the child with the parent
+        print (mta.makeTargetAssociation(child1,mainFile,globalBaseURL,"my:relatedCaseInfo"))
+        #this associates the parent with the child
+        print (mta.makeTargetAssociation(mainFile,child1,globalBaseURL,"rel:parentCase"))
+
 
     if row['POFilename'] != 0:
-            node3 = uploadToAlfresco.uploadToAlfresco(path,row['POFilename'],globalBaseURL,baseFolder,'child') #change folder to hidden
-            #print (makeTargetAssociation.makeTargetAssociation(node3,targetNode,globalBaseURL))
-            print (mca.makeChildAssociation(node3,targetNode,globalBaseURL))
+        child2 = uploadToAlfresco.uploadToAlfresco(path,row['POFilename'],globalBaseURL,baseFolder,'rel:relatedCases') #change folder to hidden
+         #this associates the child with the parent
+        print (mta.makeTargetAssociation(child2,mainFile,globalBaseURL,"my:relatedCaseInfo"))
+        #this associates the parent with the child
+        print (mta.makeTargetAssociation(mainFile,child2,globalBaseURL,"rel:parentCase"))
+
 
 
 
