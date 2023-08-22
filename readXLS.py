@@ -27,8 +27,8 @@ mainFile = ''
 node2 = ''
 node3 = ''
  
-path = "FilesforSearchTool/"
-path = "" #use this for testing
+path = "Files for Search Tool/"
+#path = "" #use this for testing
 
 
 inputFile = path + "metadata.xlsx"
