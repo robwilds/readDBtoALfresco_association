@@ -5,7 +5,10 @@ def updateNode(targetNodeID,alfURL,caseID,plaintiff,defendent,docID,DocFileName,
 
     #data = "{\"properties\":{\"my:caseID\":\""+ caseID+ "\"}}"    ,\"my:plaintiff\":\""+ plaintiff+ "\"
     # original -> data = "{\"properties\":{\"my:caseID\":\""+ caseID+ "\",\"my:plaintiff\":\""+ plaintiff+ "\",\"my:defendant\":\""+ defendent+ "\",\"my:DocID\":\""+ str(docID)+ "\",\"my:DocTitle\":\""+ Doctitle+ "\",\"my:Author\":\""+ Author+ "\",\"my:Recipient\":\""+ Recipient+ "\",\"my:RecipientTitle\":\""+ Recipienttitle+ "\",\"my:RecipientAgency\":\""+ RecipientAgency+ "\",\"my:DocType\":\""+ DocType+ "\",\"my:FOIANotes\":\""+ foiaNotes+ "\"}}"  
-    data = "{\"properties\":{\"cm:description\":\"author->" + Author+" doctype-> "+ DocType +"\",\"my:caseID\":\""+ caseID+ "\",\"my:plaintiff\":\""+ plaintiff+ "\",\"my:defendant\":\""+ defendent+ "\",\"my:DocID\":\""+ str(docID)+ "\",\"my:DocTitle\":\""+ Doctitle+ "\",\"my:Author\":\""+ Author+ "\",\"my:Recipient\":\""+ Recipient+ "\",\"my:RecipientTitle\":\""+ Recipienttitle+ "\",\"my:RecipientAgency\":\""+ RecipientAgency+ "\",\"my:DocType\":\""+ DocType+ "\",\"my:FOIANotes\":\""+ foiaNotes+ "\"}}"
+    # original with updated description data = "{\"properties\":{\"cm:description\":\"author->" + Author+" doctype-> "+ DocType +"\",\"my:caseID\":\""+ caseID+ "\",\"my:plaintiff\":\""+ plaintiff+ "\",\"my:defendant\":\""+ defendent+ "\",\"my:DocID\":\""+ str(docID)+ "\",\"my:DocTitle\":\""+ Doctitle+ "\",\"my:Author\":\""+ Author+ "\",\"my:Recipient\":\""+ Recipient+ "\",\"my:RecipientTitle\":\""+ Recipienttitle+ "\",\"my:RecipientAgency\":\""+ RecipientAgency+ "\",\"my:DocType\":\""+ DocType+ "\",\"my:FOIANotes\":\""+ foiaNotes+ "\"}}"
+    
+    data = "{\"properties\":{\"cm:title\":\""+ Doctitle + "\",\"cm:description\":\"author->" + Author+" doctype-> "+ DocType +"\",\"my:caseID\":\""+ caseID+ "\",\"my:plaintiff\":\""+ plaintiff+ "\",\"my:defendant\":\""+ defendent+ "\",\"my:DocID\":\""+ str(docID)+ "\",\"my:DocTitle\":\""+ Doctitle+ "\",\"my:Author\":\""+ Author+ "\",\"my:Recipient\":\""+ Recipient+ "\",\"my:RecipientTitle\":\""+ Recipienttitle+ "\",\"my:RecipientAgency\":\""+ RecipientAgency+ "\",\"my:DocType\":\""+ DocType+ "\",\"my:FOIANotes\":\""+ foiaNotes+ "\"}}"
+    
     print("update data is: " + data +" for nodeid: "+targetNodeID)
 
     print (requests.put(_url,data,auth=('demo','demo')))
