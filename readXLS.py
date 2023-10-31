@@ -27,15 +27,13 @@ mainFile = ''
 node2 = ''
 node3 = ''
  
-path = "Files for Search Tool/"
+path = "FilesforSearchTool/"
 #path = "" #use this for testing
-
 
 inputFile = path + "metadata.xlsx"
 # read by default 1st sheet of an excel file
 dataframe1 = pd.read_excel(inputFile)
 dataframe1.fillna(0, inplace=True)
-
 
 for index, row in dataframe1.iterrows():
     
